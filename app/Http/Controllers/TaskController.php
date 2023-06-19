@@ -25,5 +25,13 @@ class TaskController extends Controller
 
     public function store(StoreRequest $request): JsonResponse{
         DB::beginTransaction();
+        try {
+
+            DB::commit();
+            return $this->successCreated();
+        } catch (\Exception $exception){
+            DB::rollBack();
+            return $this->errorOccurred($exception->getMessage());
+        }
     }
 }
