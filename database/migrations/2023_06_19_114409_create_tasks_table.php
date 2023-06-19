@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('task');
             $table->mediumText('description')->nullable();
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('delegate_id')->nullable()->constrained('users')->nullOnDelete();
 
             $table->boolean('is_active')->default(true);
             $table->foreignId('added_by_id')->nullable();
