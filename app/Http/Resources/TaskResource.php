@@ -21,7 +21,8 @@ class TaskResource extends JsonResource
             "task" => $this->task,
             "description" => $this->description,
             "is_completed" => $this->is_completed,
-            "user" => UserResource::make($this->whenLoaded('user'))
+            "user" => UserResource::make($this->whenLoaded('user')),
+            "created_at" => $this->created_at,
         ];
     }
 }
