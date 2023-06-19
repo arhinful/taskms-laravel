@@ -38,7 +38,15 @@ class TaskController extends Controller
         }
     }
 
-    public function update(UpdateRequest $request){
-
+    public function update(Task $task, UpdateRequest $request): JsonResponse{
+        DB::beginTransaction();
+        try {
+            $task = TaskService::update($task, $request->validated());
+            $task = TaskResource::make($task);
+            DB::commit();
+            return $this->successUpdated($task);
+        } catch (\Exception $exception){
+            return $this->errorOccurred($exception->getMessage());
+        }
     }
 }
