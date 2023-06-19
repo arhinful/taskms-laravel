@@ -15,6 +15,13 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasSlug;
 
+    protected $guarded = [
+        "id",
+        "uuid",
+        "created_at",
+        "deleted_at",
+    ];
+
     protected $fillable = [
         'name',
         'email',
