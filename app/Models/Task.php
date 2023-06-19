@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Sluggable\HasSlug;
 
 class Task extends Model
 {
-    use HasFactory, ModelBootingTrait, SoftDeletes;
+    use HasFactory, ModelBootingTrait, SoftDeletes, HasSlug;
 
     protected $guarded = [
         "id",
