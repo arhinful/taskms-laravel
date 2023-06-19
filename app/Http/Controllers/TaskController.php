@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Task\StoreRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
+use App\Services\TaskService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -26,9 +27,10 @@ class TaskController extends Controller
     public function store(StoreRequest $request): JsonResponse{
         DB::beginTransaction();
         try {
-
+            $task = TaskService::store($request->validated());
+            $task = TaskResource::make($task);
             DB::commit();
-            return $this->successCreated();
+            return $this->successCreated($task);
         } catch (\Exception $exception){
             DB::rollBack();
             return $this->errorOccurred($exception->getMessage());
