@@ -16,7 +16,6 @@ trait ModelBootingTrait
         static::creating(function ($model){
             $model->added_by_id = auth()->check() ? auth()->user()->id : null;
             $model->uuid = Str::uuid()->toString();
-            $model->code = generateUniqueNumber(get_called_class());
         });
         static::addGlobalScope('active', function (Builder $builder){
             $builder->whereIsActive(true);
