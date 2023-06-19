@@ -43,6 +43,11 @@ class TaskController extends Controller
         }
     }
 
+    public function show(Task $task): JsonResponse{
+        $task = TaskResource::make($task);
+        return $this->successRead($task);
+    }
+
     public function update(Task $task, UpdateRequest $request): JsonResponse{
         DB::beginTransaction();
         try {
