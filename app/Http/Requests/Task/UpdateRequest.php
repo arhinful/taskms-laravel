@@ -23,7 +23,8 @@ class UpdateRequest extends FormRequest
     {
         return [
             "task" => ['required', 'string'],
-            "description" => ['required', 'string']
+            "description" => ['required', 'string'],
+            "is_completed" => ['required', 'boolean'],
         ];
     }
 }

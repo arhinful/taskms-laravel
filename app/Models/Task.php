@@ -24,6 +24,7 @@ class Task extends Model
     protected $fillable = [
         "task",
         "description",
+        "is_completed"
     ];
 
     public function getSlugOptions() : SlugOptions
