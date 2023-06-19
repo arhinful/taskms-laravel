@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Task extends Model
 {
@@ -24,6 +25,13 @@ class Task extends Model
         "task",
         "description",
     ];
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('')
+            ->saveSlugsTo('slug');
+    }
 
     public function user(): BelongsTo{
         return $this->belongsTo(User::class);
