@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Task\StoreRequest;
+use App\Http\Requests\Task\UpdateRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use App\Services\TaskService;
@@ -35,5 +36,9 @@ class TaskController extends Controller
             DB::rollBack();
             return $this->errorOccurred($exception->getMessage());
         }
+    }
+
+    public function update(UpdateRequest $request){
+
     }
 }
