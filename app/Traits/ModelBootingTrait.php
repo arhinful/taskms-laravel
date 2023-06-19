@@ -27,13 +27,6 @@ trait ModelBootingTrait
         return $this->belongsTo(User::class, 'added_by_id', 'id');
     }
 
-    public function getSlugOptions() : SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
-    }
-
     public function formattedCreatedAt() : Attribute {
         return new Attribute(
             get: fn() => date('D, jS M Y',strtotime($this->created_at)),
