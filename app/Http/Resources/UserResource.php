@@ -16,10 +16,11 @@ class UserResource extends JsonResource
     {
         return [
             "id" => $this->name,
-            "uuid" => $this->name,
-            "slug" => $this->name,
+            "uuid" => $this->uuid,
+            "slug" => $this->slug,
             "name" => $this->name,
             "email" => $this->email,
+            "tasks" => TaskResource::collection($this->whenLoaded('tasks'))
         ];
     }
 }
