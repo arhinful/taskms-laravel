@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->uuid();
+
+            $table->string('slug')->unique();
+            $table->string('task');
+            $table->mediumText('description')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+
+            $table->boolean('is_active')->default(true);
+            $table->foreignId('added_by_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
