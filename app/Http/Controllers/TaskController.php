@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -15,5 +16,7 @@ class TaskController extends Controller
                 "user_id",
             ])
             ->paginate();
+        $tasks = TaskResource::collection($tasks)->response()->getData(true);
+        return $this->successReadCollection($tasks);
     }
 }
