@@ -29,7 +29,7 @@ class Task extends Model
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('')
+            ->generateSlugsFrom('task')
             ->saveSlugsTo('slug');
     }
 
