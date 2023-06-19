@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Traits\ModelBootingTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model
 {
-    use HasFactory, ModelBootingTrait;
+    use HasFactory, ModelBootingTrait, SoftDeletes;
 
     protected $guarded = [
         "id",
@@ -21,4 +22,8 @@ class Task extends Model
         "task",
         "description",
     ];
+
+    public function tasks(){
+
+    }
 }
