@@ -51,6 +51,19 @@ class TaskController extends Controller
             DB::commit();
             return $this->successUpdated($task);
         } catch (\Exception $exception){
+            DB::rollBack();
+            return $this->errorOccurred($exception->getMessage());
+        }
+    }
+
+    public function destroy(Task $task): JsonResponse{
+        DB::beginTransaction();
+        try {
+            $task->delete();
+            DB::commit();
+            return $this->successDeleted();
+        } catch (\Exception $exception){
+            DB::rollBack();
             return $this->errorOccurred($exception->getMessage());
         }
     }
