@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Task\StoreRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class TaskController extends Controller
@@ -19,5 +21,9 @@ class TaskController extends Controller
             ->paginate();
         $tasks = TaskResource::collection($tasks)->response()->getData(true);
         return $this->successReadCollection($tasks);
+    }
+
+    public function store(StoreRequest $request): JsonResponse{
+        DB::beginTransaction();
     }
 }
