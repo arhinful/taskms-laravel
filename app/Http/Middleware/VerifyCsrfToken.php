@@ -13,5 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
+        'https://tasksm-frontend.vercel.app',
+        'https://tasksm-frontend.vercel.app/*',
     ];
 }
