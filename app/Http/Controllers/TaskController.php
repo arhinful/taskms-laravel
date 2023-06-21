@@ -25,6 +25,7 @@ class TaskController extends Controller
                 "description",
                 "user_id",
             ])
+            ->orderBy('created_at', 'DESC')
             ->paginate();
         $tasks = TaskResource::collection($tasks)->response()->getData(true);
         return $this->successReadCollection($tasks);
