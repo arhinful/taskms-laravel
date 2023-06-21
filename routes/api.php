@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')
     // max of 10 requests per min for guest users and 60 requests per min for auth users
-    ->middleware(['throttle:10|60,1'])
+//    ->middleware(['throttle:10|60,1'])
     ->group(function () {
         RouteHelper::includeRouteFiles(__DIR__ . '/v1');
         Route::fallback(function (){
